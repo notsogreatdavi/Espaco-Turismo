@@ -1,0 +1,137 @@
+<html>
+<meta charset="utf-8">
+<!-- Provavelmente é melhor arranjar um outro modelo de calendário pra utilizar
+     muitos comandos desnecessários -->
+
+<head>
+    <link rel="icon" type="image/png" href="./img/Espaço Turismo WEB.png">
+    <meta charset='utf-8' />
+    <link href='../16-12-20/css/calendario.css' rel='stylesheet' />
+    <script src='../16-12-20/js/calendario.js'></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var calendarEl = document.getElementById('calendar');
+
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                headerToolbar: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: '',
+
+                },
+                initialDate: '2020-12-21',
+                navLinks: false, // can click day/week names to navigate views
+                businessHours: true, // display business hours
+                editable: false,
+                selectable: false,
+                events: [{
+                        title: 'Business Lunch',
+                        start: '2020-09-03T13:00:00',
+                        constraint: 'businessHours'
+                    }, {
+                        title: 'Meeting',
+                        start: '2020-09-13T11:00:00',
+                        constraint: 'availableForMeeting', // defined below
+                        color: '#257e4a'
+                    }, {
+                        title: 'Conference',
+                        start: '2020-09-18',
+                        end: '2020-09-20'
+                    }, {
+                        title: 'Party',
+                        start: '2020-09-29T20:00:00'
+                    },
+
+                    // areas where "Meeting" must be dropped
+                    {
+                        groupId: 'availableForMeeting',
+                        start: '2020-09-11T10:00:00',
+                        end: '2020-09-11T16:00:00',
+                        display: 'background'
+                    }, {
+                        groupId: 'availableForMeeting',
+                        start: '2020-09-13T10:00:00',
+                        end: '2020-09-13T16:00:00',
+                        display: 'background'
+                    },
+
+                    // red areas where no events can be dropped
+                    {
+                        start: '2020-09-24',
+                        end: '2020-09-28',
+                        overlap: false,
+                        display: 'background',
+                        color: '#ff9f89'
+                    }, {
+                        start: '2020-09-06',
+                        end: '2020-09-08',
+                        overlap: false,
+                        display: 'background',
+                        color: '#ff9f89'
+                    }
+                ]
+            });
+
+            calendar.render();
+        });
+    </script>
+    <style>
+        #calendar {
+            position: absolute;
+            width: 80%;
+            margin-right: 10%;
+            margin-left: 10%;
+            margin-top: 6%;
+            z-index: 1000;
+            overflow: hidden;
+            height: 82%;
+        }
+    </style>
+    <link rel="stylesheet" type="text/css" href="./css/main.css">
+    <title>Espaço Turismo</title>
+</head>
+
+<body>
+    <header class="menu-principal">
+        <main>
+            <div class="header1">
+                <div class="redes-sociais">
+                    <ul>
+                        <li>
+                            <a href=""><img src="./img/rss.png" /></a>
+                        </li>
+                        <li>
+                            <a href=""><img src="./img/face.png" /></a>
+                        </li>
+                        <li>
+                            <a href=""><img src="./img/tw.png" /></a>
+                        </li>
+                        <li>
+                            <a href=""><img src="./img/linkedin.png" /></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+    </header>
+    <main class="col-100 menu-urls">
+        <div class="header2">
+            <div class="menu">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="artigos.html">Artigos</a></li>
+                    <li><a href="livros.html">Livros</a></li>
+                    <li><a href="contato.html">Contato</a></li>
+                    <li><a href="calendário.html" class="selected">Calendário</a></li>
+                </ul>
+            </div>
+            <div class="busca">
+                <input placeholder="Search Something" type="text" />
+            </div>
+        </div>
+    </main>
+    <div id='calendar' class="calendar"> </div>
+
+</body>
+
+</html>
